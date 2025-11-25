@@ -4,13 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Recuperar Senha - Loja Seu Zé</title>
-  <link rel="stylesheet" href="/frontend/css/style.css">
+  <link rel="stylesheet" href="/frontend/css/senha.css">
+   <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
   <link rel="shortcut icon" href="/frontend/img/logo.png" type="image/x-icon">
 </head>
 <body>
+   <button class="info-icone">
+        <span class="material-symbols-outlined">arrow_back</span>
+        <a href="/frontend/pages/login.html">Voltar a tela inicial</a>
+      </button>
   <!-- Etapa 1: Solicitar e-mail -->
   <section id="recuperar-senha">
-    <img src="/frontend/img/logo.png" alt="Logo Loja Seu Zé">
     <h1>Recuperar Senha</h1>
     <form id="form-recuperar">
       <label for="email">Digite seu e-mail cadastrado:</label>
@@ -22,10 +29,9 @@
 
   <!-- Etapa 2: Verificar código -->
   <section id="verifica-codigo" class="hidden">
-    <img src="/frontend/img/logo.png" alt="Logo Loja Seu Zé">
     <form id="form-verifica">
       <label for="codigo">Digite o código enviado ao seu e-mail:</label>
-      <input type="text" id="codigo" name="codigo" required>
+      <input type="text" id="codigo" name="codigo" >
       <button type="submit">Verificar Código</button>
     </form>
     <p id="mensagem-codigo"></p>
@@ -33,15 +39,16 @@
 
   <!-- Etapa 3: Nova senha -->
   <section id="digite" class="hidden">
-    <img src="/frontend/img/logo.png" alt="">
     <form id="form-nova-senha">
       <label for="nova-senha">Digite sua nova senha:</label>
       <input type="password" id="nova-senha" name="nova-senha" required>
-      <button type="submit">Alterar Senha</button>
+      <label for="nova-senha">Repita a nova senha:</label>
+      <input type="password" name="nova-senha" id="nova-senha" required>
+      <button type="submit">Alterar a senha</button>
     </form>
     <p id="mensagem-nova-senha"></p>
   </section>
 
-  <script src="/frontend/js/script.js"></script>
+  <script src="/frontend/js/senha.js"></script>
 </body>
 </html>

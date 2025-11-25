@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loja do seu zé - Pagamento</title>
+  <link rel="shortcut icon" href="/frontend/img/logo.png" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+  <style>
+    *{
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+    body{
+      background: url(/frontend/img/meus-pagamentos.png) center/cover no-repeat fixed;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    #pagamentos{
+      background-color: #fff;
+      width: 600px;
+      border-radius: 10px;
+      padding: 40px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    h2{
+      color: #333;
+      margin-bottom: 30px;
+      font-size: 24px;
+    }
+    .form{
+      text-align: left;
+    }
+    .form p{
+      color: #666;
+      margin-bottom: 15px;
+      font-weight: 500;
+    }
+    #pagamentoForm{
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #ddd;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: border-color 0.3s;
+    }
+    #pagamentoForm:focus{
+      outline: none;
+      border-color: #4CAF50;
+    }
+    .detalhes{
+      margin-top: 30px;
+      padding: 20px;
+      background-color: #f9f9f9;
+      border-radius: 5px;
+      display: none;
+    }
+    .detalhes.ativo{
+      display: block;
+    }
+    .detalhes input, .detalhes textarea{
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+    .valor-total{
+      font-size: 20px;
+      font-weight: bold;
+      color: #4CAF50;
+      margin: 20px 0;
+    }
+    .botoes{
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    button{
+      flex: 1;
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .btn-confirmar{
+      background-color: #4CAF50;
+      color: white;
+    }
+    .btn-confirmar:hover{
+      background-color: #45a049;
+    }
+    .btn-cancelar{
+      background-color: #f44336;
+      color: white;
+    }
+    .btn-cancelar:hover{
+      background-color: #da190b;
+    }
+  </style>
+</head>
+<body>
+  <section id="pagamentos">
+    <h2>Finalize sua compra</h2>
+    <div class="form">
+      <p>Selecione a forma de pagamento</p>
+      <select id="pagamentoForm">
+        <option value="">-- Selecione --</option>
+        <option value="pix">PIX</option>
+        <option value="credito">Cartão de Crédito</option>
+        <option value="debito">Cartão de Débito</option>
+        <option value="boleto">Boleto Bancário</option>
+        <option value="fiado">Fiado</option>
+        <option value="dinheiro">Dinheiro</option>
+      </select>
+      
+      <div id="resumo-compra">
+        <h3>Total a pagar R$: <span id="valorTotal">0.00</span></h3>
+      </div>
+
+      <div id="detalhesMetodo" class="detalhes">
+      </div>
+
+      <div class="botoes">
+        <button class="btn-confirmar" onclick="confirmarPagamento()">Confirmar</button>
+        <button class="btn-cancelar" onclick="cancelarPagamento()">Cancelar</button>
+      </div>
+    </div>
+  </section>
+
+  <script src="/frontend/js/caixa.js"></script>
+</body>
+</html>

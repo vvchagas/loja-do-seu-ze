@@ -1,0 +1,216 @@
+{
+  "name": "Recuperação de Senha - Sistema de Compras",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "Webhook Esqueci Senha",
+      "type": "n8n-nodes-base.webhook",
+      "position": [200, 300],
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "esqueci-senha",
+        "responseMode": "onReceived"
+      }
+    },
+    {
+      "id": "2",
+      "name": "Buscar Usuário",
+      "type": "n8n-nodes-base.mySql",
+      "position": [400, 300],
+      "parameters": {
+        "operation": "query",
+        "query": "SELECT * FROM usuarios WHERE email='{{$json[\"email\"]}}';"
+      }
+    },
+    {
+      "id": "3",
+      "name": "Usuário Existe?",
+      "type": "n8n-nodes-base.if",
+      "position": [600, 300],
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "operation": "greater",
+              "value1": "={{$items(\"Buscar Usuário\").length}}",
+              "value2": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "4",
+      "name": "Gerar Código",
+      "type": "n8n-nodes-base.function",
+      "position": [800, 260],
+      "parameters": {
+        "functionCode": "const code = Math.floor(100000 + Math.random() * 900000);\nreturn [{\n  email: $json.email,\n  code,\n  expires_at: new Date(Date.now() + 10 * 60000).toISOString()\n}];"
+      }
+    },
+    {
+      "id": "5",
+      "name": "Salvar Código",
+      "type": "n8n-nodes-base.mySql",
+      "position": [1000, 260],
+      "parameters": {
+        "operation": "query",
+        "query": "UPDATE usuarios SET codigo_recuperacao='{{$json[\"code\"]}}', expiracao_codigo='{{$json[\"expires_at\"]}}' WHERE email='{{$json[\"email\"]}}';"
+      }
+    },
+    {
+      "id": "6",
+      "name": "Enviar Email Código",
+      "type": "n8n-nodes-base.emailSend",
+      "position": [1200, 260],
+      "parameters": {
+        "fromEmail": "seuemail@gmail.com",
+        "toEmail": "={{$json[\"email\"]}}",
+        "subject": "Código de Recuperação",
+        "text": "Seu código de recuperação é: {{$json[\"code\"]}}\nEle expira em 10 minutos."
+      }
+    },
+    {
+      "id": "7",
+      "name": "Resposta OK",
+      "type": "n8n-nodes-base.webhookResponse",
+      "position": [1400, 260],
+      "parameters": {
+        "statusCode": 200,
+        "responseBody": "Código enviado ao email."
+      }
+    },
+    {
+      "id": "8",
+      "name": "Webhook Validar Código",
+      "type": "n8n-nodes-base.webhook",
+      "position": [200, 600],
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "validar-codigo",
+        "responseMode": "onReceived"
+      }
+    },
+    {
+      "id": "9",
+      "name": "Buscar Código",
+      "type": "n8n-nodes-base.mySql",
+      "position": [400, 600],
+      "parameters": {
+        "operation": "query",
+        "query": "SELECT codigo_recuperacao, expiracao_codigo FROM usuarios WHERE email='{{$json[\"email\"]}}';"
+      }
+    },
+    {
+      "id": "10",
+      "name": "Código Correto?",
+      "type": "n8n-nodes-base.if",
+      "position": [600, 600],
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$json[\"codigo\"]}}",
+              "operation": "equal",
+              "value2": "={{$items(\"Buscar Código\").first().json.codigo_recuperacao}}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "11",
+      "name": "Código Expirou?",
+      "type": "n8n-nodes-base.if",
+      "position": [800, 560],
+      "parameters": {
+        "conditions": {
+          "dateTime": [
+            {
+              "value1": "={{$items(\"Buscar Código\").first().json.expiracao_codigo}}",
+              "operation": "after",
+              "value2": "={{new Date().toISOString()}}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "12",
+      "name": "Código OK",
+      "type": "n8n-nodes-base.webhookResponse",
+      "position": [1000, 540],
+      "parameters": {
+        "statusCode": 200,
+        "responseBody": "Código válido."
+      }
+    },
+    {
+      "id": "13",
+      "name": "Código Inválido",
+      "type": "n8n-nodes-base.webhookResponse",
+      "position": [1000, 660],
+      "parameters": {
+        "statusCode": 400,
+        "responseBody": "Código inválido ou expirado."
+      }
+    },
+    {
+      "id": "14",
+      "name": "Webhook Nova Senha",
+      "type": "n8n-nodes-base.webhook",
+      "position": [200, 900],
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "nova-senha",
+        "responseMode": "onReceived"
+      }
+    },
+    {
+      "id": "15",
+      "name": "Atualizar Senha",
+      "type": "n8n-nodes-base.mySql",
+      "position": [400, 900],
+      "parameters": {
+        "operation": "query",
+        "query": "UPDATE usuarios SET senha='{{$json[\"nova_senha\"]}}', codigo_recuperacao=NULL, expiracao_codigo=NULL WHERE email='{{$json[\"email\"]}}';"
+      }
+    },
+    {
+      "id": "16",
+      "name": "Resposta Senha OK",
+      "type": "n8n-nodes-base.webhookResponse",
+      "position": [600, 900],
+      "parameters": {
+        "statusCode": 200,
+        "responseBody": "Senha alterada com sucesso!"
+      }
+    }
+  ],
+  "connections": {
+    "Webhook Esqueci Senha": { "main": [[{ "node": "Buscar Usuário", "type": "main", "index": 0 }]] },
+    "Buscar Usuário": { "main": [[{ "node": "Usuário Existe?", "type": "main", "index": 0 }]] },
+    "Usuário Existe?": { "main": [[{ "node": "Gerar Código", "type": "main", "index": 0 }]] },
+    "Gerar Código": { "main": [[{ "node": "Salvar Código", "type": "main", "index": 0 }]] },
+    "Salvar Código": { "main": [[{ "node": "Enviar Email Código", "type": "main", "index": 0 }]] },
+    "Enviar Email Código": { "main": [[{ "node": "Resposta OK", "type": "main", "index": 0 }]] },
+
+    "Webhook Validar Código": { "main": [[{ "node": "Buscar Código", "type": "main", "index": 0 }]] },
+    "Buscar Código": { "main": [[{ "node": "Código Correto?", "type": "main", "index": 0 }]] },
+    "Código Correto?": { 
+      "main": [
+        [{ "node": "Código Expirou?", "type": "main", "index": 0 }],
+        [{ "node": "Código Inválido", "type": "main", "index": 0 }]
+      ]
+    },
+    "Código Expirou?": {
+      "main": [
+        [{ "node": "Código OK", "type": "main", "index": 0 }],
+        [{ "node": "Código Inválido", "type": "main", "index": 0 }]
+      ]
+    },
+
+    "Webhook Nova Senha": { "main": [[{ "node": "Atualizar Senha", "type": "main", "index": 0 }]] },
+    "Atualizar Senha": { "main": [[{ "node": "Resposta Senha OK", "type": "main", "index": 0 }]] }
+  }
+}

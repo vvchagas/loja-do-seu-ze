@@ -1,0 +1,274 @@
+{
+  "name": "Sistema Boas-Vindas - Cadastro",
+  "nodes": [
+    {
+      "parameters": {
+        "trigger": "webhook",
+        "responseMode": "responseNode",
+        "responseData": "allEntries",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1.2,
+      "position": [
+        -600,
+        420
+      ],
+      "id": "479e1117-9c8b-4cf7-9458-5c73adf13c6d",
+      "name": "Webhook de Cadastro",
+      "webhookId": "cadastro-trigger"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4O-MINI"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "Você é um assistente que cria mensagens de boas-vindas calorosas e personalizadas para novos usuários. Use o nome da pessoa e personalize a mensagem. Seja entusiasmado e ofereça ajuda.",
+              "role": "system"
+            },
+            {
+              "content": "=Crie uma mensagem de boas-vindas para:\nNome: {{ $json.nome }}\nEmail: {{ $json.email }}\nEmpresa: {{ $json.empresa || 'Não informada' }}\n\nInclua:\n- Saudação personalizada com o nome\n- Agradecimento pelo cadastro\n- Breve descrição dos benefícios\n- Oferecimento de suporte\n- Assinatura: 'Atenciosamente, Equipe [Sistema]'"
+            },
+            {
+              "content": "Por favor, formate os dados no formato JSON:\n{\n\"assunto\": \"Assunto do email\",\n\"mensagem\": \"Corpo do email com quebras de linha\"\n}",
+              "role": "assistant"
+            }
+          ]
+        },
+        "jsonOutput": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        -380,
+        420
+      ],
+      "id": "0e81405c-705b-4879-a396-f0e7ecd3f698",
+      "name": "IA - Mensagem Boas-Vindas",
+      "credentials": {
+        "openAiApi": {
+          "id": "i3h3yVb6UrrlvOnQ",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "sendTo": "={{ $json.email }}",
+        "subject": "={{ $json.message.content.assunto }}",
+        "message": "={{ $json.message.content.mensagem }}",
+        "options": {
+          "cc": "",
+          "bcc": ""
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        -160,
+        420
+      ],
+      "id": "55e0885d-7fc1-46d6-80b4-e28c0e956aa0",
+      "name": "Envia Email Boas-Vindas",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "sN3mkstKmfO42my0",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1fLUYfps6oZSPfKG9HnkGt5xncp8OYDz_fNrh_tALvvE",
+          "mode": "list",
+          "cachedResultName": "Email Summary n8n",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1fLUYfps6oZSPfKG9HnkGt5xncp8OYDz_fNrh_tALvvE/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Página1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1fLUYfps6oZSPfKG9HnkGt5xncp8OYDz_fNrh_tALvvE/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Data Cadastro": "{{ $now }}",
+            "Nome": "{{ $('Webhook de Cadastro').item.json.nome }}",
+            "Email": "{{ $('Webhook de Cadastro').item.json.email }}",
+            "Empresa": "{{ $('Webhook de Cadastro').item.json.empresa || 'Não informada' }}",
+            "Telefone": "{{ $('Webhook de Cadastro').item.json.telefone || 'Não informado' }}",
+            "Status": "Email de boas-vindas enviado"
+          },
+          "matchingColumns": [
+            "Email"
+          ],
+          "schema": [
+            {
+              "id": "Data Cadastro",
+              "displayName": "Data Cadastro",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Nome",
+              "displayName": "Nome",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Empresa",
+              "displayName": "Empresa",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Telefone",
+              "displayName": "Telefone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        60,
+        420
+      ],
+      "id": "f8816d04-76a8-4d98-a1dc-3f640878f04d",
+      "name": "Registra no Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "HLFIN23IWFkWYa0q",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "responseCode": 200,
+        "responseBody": {
+          "success": true,
+          "message": "Cadastro processado com sucesso! Email de boas-vindas enviado.",
+          "userEmail": "={{ $('Webhook de Cadastro').item.json.email }}"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.2,
+      "position": [
+        280,
+        420
+      ],
+      "id": "response-node",
+      "name": "Resposta Webhook",
+      "webhookId": "response-webhook"
+    }
+  ],
+  "connections": {
+    "Webhook de Cadastro": {
+      "main": [
+        [
+          {
+            "node": "IA - Mensagem Boas-Vindas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IA - Mensagem Boas-Vindas": {
+      "main": [
+        [
+          {
+            "node": "Envia Email Boas-Vindas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Envia Email Boas-Vindas": {
+      "main": [
+        [
+          {
+            "node": "Registra no Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Registra no Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Resposta Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0
+}

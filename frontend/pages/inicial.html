@@ -1,24 +1,258 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="/frontend/css/style.css">
-  <link rel="shortcut icon" href="/frontend/img/logo.png" type="image/x-icon">
-</head>
-<body>
-  <header class="cabecalho">
-    <img src="/frontend/img/logo.png" alt="Logo da Loja Seu Zé" class="logo">
-    <nav class="navegacao">
-      <a href="/frontend/pages/inicial.html">Início</a>
-      <a href="/frontend/pages/produtos.html">Produtos</a>
-      <a href="/frontend/pages/sobre.html">Sobre Nós</a>
-      <a href="/frontend/pages/contato.html">Contato</a>
-      <a href="/frontend/pages/perfil.html">Perfil</a>
-  </header>
-  
-  
-  <script src="/frontend/js/script.js"></script>
-</body>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Loja do seu zé - Início</title>
+    <link rel="stylesheet" href="/frontend/css/inicial.css" />    
+    <link
+      rel="shortcut icon"
+      href="/frontend/img/logo.png"
+      type="image/x-icon"
+    />
+    <meta name="theme-color" content="#E5C688" />
+     <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <link>
+  </head>
+  <body>
+    <header class="navegacao" role="banner">
+      <div class="nav-left">
+        <a href="/frontend/pages/inicial.html" class="logo-link" aria-label="Página inicial">
+          <img src="/frontend/img/logo.png" alt="Logo da loja" />
+        </a>
+      </div>
+     
+      <a href="/frontend/pages/perfil.html" class="perfil" title="Meu perfil" aria-label="Meu perfil">
+        <span class="material-symbols-outlined">person</span>
+        <span class="perfil-text">Perfil</span>
+      </a>
+
+      <div class="left-end">
+      <a class="carrinho" >
+        <span class="material-symbols-outlined">shopping_cart</span>
+        <span class="perfil-text">Carrinho</span>
+      </a><!--carrinho-->
+        
+         <a href="/frontend/pages/login.html" class="exit">
+        <span class="material-symbols-outlined">logout</span>
+        <span class="perfil-text">Sair</span>
+      </a>
+      </a>
+      </div>
+    </header>
+ 
+      <main id="conteudo" role="main" aria-label="Conteúdo principal">
+      <nav class="categorias-nav" aria-label="Navegação por categorias">
+        <ul>
+          <li><a href="#padaria">Padaria</a></li>
+          <li><a href="#doces">Doces</a></li>
+          <li><a href="#frutas">Frutas</a></li>
+          <li><a href="#lanche">Lanche</a></li>
+        </ul>
+      </nav>
+
+     <section id="padaria" class="categoria" aria-labelledby="padaria-title">
+        <h2 id="padaria-title">Padaria</h2>
+        <div class="produtos-grid" role="list">
+          <article class="produto" role="listitem" tabindex="0">
+            <img src="https://s2-receitas.glbimg.com/-V4nFrbjz9JMuWJnvQxl2NEplg8=/0x0:1280x922/924x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_e84042ef78cb4708aeebdf1c68c6cbd6/internal_photos/bs/2020/U/q/B5doHYQcKDxm0YsOynPA/pao-frances.jpeg" alt="Pão francês" />
+            <h3>Pão francês</h3>
+            <p class="descricao">O pão francês feito pelo seu zé, com boa qualidade para você</p>
+            <p class="preco">R$ 12,50 /kg</p>
+            <button class="btn-comprar" aria-label="Adicionar pão francês ao carrinho">Comprar</button>
+          </article>
+
+           <article class="produto" role="listitem" tabindex="0">
+            <img src="https://i.ytimg.com/vi/Co30rYlWx9I/maxresdefault.jpg" alt="Chepa" />
+            <h3>Chepa</h3>
+            <p class="descricao">Pega essa Chepa cheia de delícias fresquinhas com preço de oportunidade. Quem chega primeiro, garante o melhor pedaço!</p>
+            <p class="preco">R$ 8,0 /kg</p>
+            <button class="btn-comprar" aria-label="Adicionar Chepa ao carrinho">Comprar</button>
+          </article>
+
+           <article class="produto" role="listitem" tabindex="0">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEb7_PT8JpBwTTNH8o2KvxyZhwEM5XFLOsiVQAxA4yVKncJroFaMEaoqNp0EnS-55flNeI4VdDYh43QEiq-0wQXzvQlmBNC_4hvARrEA&s=10" alt="Pão de Queijo" />
+            <h3>Pão de Queijo</h3>
+            <p class="descricao">Crocante por fora, macio por dentro e cheio de sabor mineiro! 🧀☕ Perfeito pra qualquer hora do dia.</p>
+            <p class="preco">R$ 24,70 /kg</p>
+            <button class="btn-comprar" aria-label="Adicionar pão de Queijo carrinho">Comprar</button>
+          </article>
+
+           <article class="produto" role="listitem" tabindex="0">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4z8-zFhFJ_aQKZHO3ZR1ZaqjdHn_hb0QhOA&s" alt="Broa de milho" />
+            <h3>Broa de Milho</h3>
+            <p class="descricao">O pão francês feito pelo seu zé, com boa qualidade para você</p>
+            <p class="preco">R$ 18,50 /kg</p>
+            <button class="btn-comprar" aria-label="Adicionar Broa de Milho ao carrinho">Comprar</button>
+          </article>
+      </section>
+
+      <section id="doces" class="categoria" aria-labelledby="doces-title">
+        <h2 id="doces-title">Doces</h2>
+        <div class="produtos-grid" role="list">
+            <article class="produto" role="listitem" tabindex="0">
+            <img src=https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8IZa1WLFw0O0uONFJ5E9OLbzoG1xujUticQ&s" alt="Pudim" />
+            <h3>Pudim</h3>
+            <p class="descricao">O pão francês feito pelo seu zé, com boa qualidade para você</p>
+            <p class="preco">R$ 32,90 /kg</p>
+            <button class="btn-comprar" aria-label="Adicionar Pudim ao carrinho">Comprar</button>
+          </article>
+
+          <article class="produto" role="listitem" tabindex="0">
+            <img src="https://www.mamacida.com.br/image/cache/data/produtos/carolinas/copia-de-img-1729-fotor-20240717223319-650x650.jpg" alt=""/>
+            <h3>Carolina</h3>
+            <p class="descricao">O pão francês feito pelo seu zé, com boa qualidade para você</p>
+            <p class="preco">R$ 28,00 /kg</p>
+            <button class="btn-comprar" aria-label="Adicionar Carolina ao carrinho">Comprar</button>
+          </article>
+
+          <article class="produto" role="listitem" tabindex="0">
+            <img src="https://static.itdg.com.br/images/1200-675/254c8dcfcbb851eaa0ed44d8e8843a06/145585-original.jpg" alt="">
+            <h3>Bomba de chocolate</h3>
+            <p class="descricao">O pão francês feito pelo seu zé, com boa qualidade para você</p>
+            <p class="preco">R$ 16,90 /kg</p>
+            <button class="btn-comprar" aria-label="Adicionar Bomba de chocolate ao carrinho">Comprar</button>
+          </article>
+
+          <article class="produto" role="listitem" tabindex="0">
+            <img src="https://www.receitasnestle.com.br/sites/default/files/srh_recipes/1d22d96039f98608bc9338debb1b4579.jpg" alt="Torta de limão" />
+            <h3>Torta de limão</h3>
+            <p class="descricao">O pão francês feito pelo seu zé, com boa qualidade para você</p>
+            <p class="preco">R$ 32,90 /kg</p>
+            <button class="btn-comprar" aria-label="Adicionar Torta de limão ao carrinho">Comprar</button>
+          </article>
+        </div>
+        </div>
+      </section>
+
+      <section id="frutas" class="categoria" aria-labelledby="frutas-title">
+        <h2 id="frutas-title">Frutas</h2>
+        <div class="produtos-grid" role="list">
+            <article class="produto" role="listitem" tabindex="0">
+              <img src="https://cdn.awsli.com.br/600x450/18/18885/produto/86689684/1b46bc5eba.jpg" alt="Maracujá"/>
+              <h3>Maracujá</h3>
+            <p class="descricao">O pão francês feito pelo seu zé, com boa qualidade para você</p>
+            <p class="preco">R$ 20,90 /kg</p>
+            <button class="btn-comprar" aria-label="Adicionar Maracujá ao carrinho">Comprar</button>
+          </article>
+
+          <article class="produto" role="listitem" tabindex="0">
+              <img src="https://nutritotal.com.br/publico-geral/wp-content/uploads/2020/02/shutterstock_385801849.jpg" alt="Manga"/>
+              <h3>Manga</h3>
+            <p class="descricao">O pão francês feito pelo seu zé, com boa qualidade para você</p>
+            <p class="preco">R$ 35,90 /kg</p>
+            <button class="btn-comprar" aria-label="Adicionar Manga ao carrinho">Comprar</button>
+          </article>
+
+          <article class="produto" role="listitem" tabindex="0">
+              <img src="https://bemintegral.com.br/wp-content/uploads/2020/03/t_mara-israelense-jumbo-100g.jpg" alt="Tamara"/>
+              <h3>Tamara</h3>
+            <p class="descricao">O pão francês feito pelo seu zé, com boa qualidade para você</p>
+            <p class="preco">R$ 49,90 /kg</p>
+            <button class="btn-comprar" aria-label="Adicionar Tamara ao carrinho">Comprar</button>
+          </article>
+
+          <article class="produto" role="listitem" tabindex="0">
+              <img src="https://image.tuasaude.com/media/article/k3/zz/beneficios-da-banana_13513.jpg?width=686&height=487" alt="Maracujá"/>
+              <h3>Banana</h3>
+            <p class="descricao">O pão francês feito pelo seu zé, com boa qualidade para você</p>
+            <p class="preco">R$ 9,90 /kg</p>
+            <button class="btn-comprar" aria-label="Adicionar Banana ao carrinho">Comprar</button>
+          </article>
+        </div>
+        </div>
+      </section>
+
+      <section id="lanche" class="categoria" aria-labelledby="lanche-title">
+        <h2 id="lanche-title">Lanche</h2>
+        <div class="produtos-grid" role="list">
+            <article class="produto" role="listitem" tabindex="0">
+            <img src="https://anamariareceitas.com.br/wp-content/uploads/2024/06/2149286864-768x512.jpg" alt="Queijo Quente" />
+            <h3>Queijo Quente</h3>
+            <p class="descricao">O pão francês feito pelo seu zé, com boa qualidade para você</p>
+            <p class="preco">R$ 18,50 UN</p>
+            <button class="btn-comprar" aria-label="Adicionar Queijo Quente ao carrinho">Comprar</button>
+          </article>
+
+          <article class="produto" role="listitem" tabindex="0">
+            <img src="https://painacozinha.com/wp-content/uploads/183.Sanduiche-natural-de-presunto-queijo-e-tomate.webp" alt="Sanduiche de Presunto" />
+            <h3>Sanduiche de Presunto</h3>
+            <p class="descricao">O pão francês feito pelo seu zé, com boa qualidade para você</p>
+            <p class="preco">R$ 12,50 UN</p>
+            <button class="btn-comprar" aria-label="Adicionar Sanduiche de Presunto ao carrinho">Comprar</button>
+          </article>
+
+          <article class="produto" role="listitem" tabindex="0">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLigfyds3_5OSm0C4_VTYXDa5g6e32kV9h7g&s" alt="Coxinha" />
+            <h3>Coxinha</h3>
+            <p class="descricao">O pão francês feito pelo seu zé, com boa qualidade para você</p>
+            <p class="preco">R$ 8,00 UN</p>
+            <button class="btn-comprar" aria-label="Adicionar Coxinha ao carrinho">Comprar</button>
+          </article>
+
+          <article class="produto" role="listitem" tabindex="0">
+            <img src="https://guiadacozinha.com.br/wp-content/uploads/2016/01/pastel-de-frango-e-bacon.webp" alt="Pastel" />
+            <h3>Pastel</h3>
+            <p class="descricao">O pão francês feito pelo seu zé, com boa qualidade para você</p>
+            <p class="preco">R$ 10,00 UN</p>
+            <button class="btn-comprar" aria-label="Adicionar Pastel ao carrinho">Comprar</button>
+          </article>
+        </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <a href="/frontend/pages/inicial.html" class="logo-link" aria-label="Página inicial">
+            <img src="/frontend/img/logo.png" alt="Logo da loja" />
+          </a>
+          <p class="brand-desc">Produtos frescos, atendimento de qualidade e entrega rápida.</p>
+        </div>
+
+        <div class="footer-contact" aria-label="Informações de contato">
+          <h4>Contato</h4>
+          <p><strong>Telefone / WhatsApp:</strong> (11) 99999-9999</p>
+          <p><strong>E-mail:</strong> seuze@lojadoseuze.com.br</p>
+          <p><strong>Endereço:</strong> Rua parque das flores, 123 — São Paulo/SP</p>
+          <p><strong>Horário de atendimento</strong> Seg–Sex 9h–18h</p>
+        </div>
+
+    <div class="footer-social" aria-label="Redes sociais">
+      <h4>Nos siga</h4>
+      <div class="social-links">
+        <a class="social-btn" href="#" aria-label="Instagram" title="Instagram">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9zm0 2a2.5 2.5 0 1 0 .001 5.001A2.5 2.5 0 0 0 12 7.5zM18.5 6.25a.75.75 0 1 1 0 1.5.75.75 0 0 1 0-1.5z"/>
+          </svg>
+          <span class="sr-only">Instagram</span>
+        </a>
+
+        <a class="social-btn" href="#" aria-label="Facebook" title="Facebook">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2.2V12h2.2V9.8c0-2.2 1.3-3.4 3.3-3.4.95 0 1.95.17 1.95.17v2.1h-1.08c-1.06 0-1.39.66-1.39 1.34V12h2.36l-.38 2.9h-1.98v7A10 10 0 0 0 22 12z"/>
+          </svg>
+          <span class="sr-only">Facebook</span>
+        </a>
+
+        <a class="social-btn" href="#" aria-label="WhatsApp" title="WhatsApp">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M20.52 3.48A11.9 11.9 0 0 0 12 0C5.373 0 .002 5.373.002 12a11.9 11.9 0 0 0 3.48 8.52L3 24l3.66-1.05A11.9 11.9 0 0 0 12 24c6.627 0 12-5.373 12-12 0-1.9-.42-3.7-1.48-5.52zM12 21.5a9.5 9.5 0 0 1-5.1-1.5l-.36-.22-2.9.83.83-2.83-.24-.37A9.5 9.5 0 1 1 21.5 12 9.51 9.51 0 0 1 12 21.5zM17.2 14.3c-.27-.14-1.6-.79-1.85-.88s-.45-.13-.64.13-.74.88-.9 1.06-.33.2-.6.07a7.73 7.73 0 0 1-2.29-1.41 8.3 8.3 0 0 1-1.52-1.9c-.16-.27 0-.41.12-.54.12-.12.27-.33.4-.49.13-.16.17-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.64-1.55-.88-2.14-.23-.56-.47-.48-.64-.49l-.55-.01c-.18 0-.47.07-.72.34-.25.27-.95.93-.95 2.27 0 1.34.98 2.64 1.12 2.83.14.19 1.94 3 4.7 4.2 1.45.63 2.19.72 2.98.59.48-.08 1.6-.65 1.82-1.28.22-.63.22-1.17.15-1.28-.06-.11-.24-.18-.51-.32z"/>
+          </svg>
+          <span class="sr-only">WhatsApp</span>
+        </a>
+      </div>
+    </div>
+
+      <div class="footer-bottom">
+        <p>© <span></span> 2025 Loja do seu zé — Todos os direitos reservados</p>
+      </div>
+    </footer>
+
+    <script src="/frontend/js/inicial.js"></script>
+  </body>
 </html>

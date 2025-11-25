@@ -1,0 +1,120 @@
+/* Importação de fontes e Reset Básico */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+     background: url(/frontend/img/tela-login.png) center/cover no-repeat fixed;
+
+    padding: 40px 20px;
+}
+
+/* 1. CLASSE ESSENCIAL: Usada pelo seu JavaScript para alternar seções */
+.hidden {
+    display: none !important;
+}
+
+
+/* Estilo para as Seções de Formulário */
+#cadastro-section,
+#login-section {
+    background-color: #E5C688;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    transition: opacity 0.3s ease;
+}
+
+
+h1 {
+    font-size: 1.4rem;
+    color: #333;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+h5 {
+    text-align: left;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+    color: #555;
+    font-weight: 400;
+}
+
+/* Estilo dos Inputs */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+input:focus {
+    border-color: #003cff;
+    outline: none;
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    margin-top: 20px;
+    background-color: #9c7c24;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;   
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+    background-color: #64460b;
+}
+
+/* Estilo dos parágrafos e links de alternância */
+#cadastro-section p,
+#login-section p,
+.senha p {
+    font-size: 0.9rem;
+    color: #777;
+    margin-top: 10px;
+}
+
+a {
+    color: #121212;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #434446;
+}
+
+/* Estilo da seção de link "Esqueceu a senha?" */
+.senha {
+    margin-top: 20px;
+}

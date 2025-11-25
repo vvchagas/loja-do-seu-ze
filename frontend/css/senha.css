@@ -1,3 +1,4 @@
+/*Parte do recuperar senha*/
 *{
   padding: 0;
   margin: 0;
@@ -5,147 +6,38 @@
 }
 body{
   font-family: Arial, Helvetica, sans-serif;
-  background-color: #9c7c24
+  background: url(/frontend/img/senha.png) center/cover no-repeat fixed;
 }
-#cadastro-section{
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-#cadastro-section img{
-  width: 150px;
-  margin-bottom: 20px;
-  display: flex;
-}
-#cadastro-section .cadastro{
-  width: 300px;
-  padding: 20px;
-  background: #E5C688;
+.info-icone{
+  background-color: #E5C688;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-.cadastro input{
-  width: 100%;
-  padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-.cadastro button{
-  width: 100%;
-  padding: 10px;
-  background: #333;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-.cadastro button:hover{
-  background: #555;
-}
-.cadastro a {
-  display: block;
-  text-align: center;
-  margin-top: 10px;
-  color: #333;
-  text-decoration: none;
-}
-.cadastro a:hover {
-  text-decoration: underline;
-}
-#cadastro-section h1 {
-  color: white;
-  margin-bottom: 20px;
-}
-
-
-#login-section{
-  width: 100%;
-  height: 100vh;
+  margin-bottom: 10px;
+  padding: 5px;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  margin-left: 300px;
+  margin-top: 200px;
 }
-#login-section img{
-  width: 150px;
-  margin-bottom: 20px;
-  display: flex;
-}
-#login-section .login{
-  width: 300px;
-  padding: 20px;
-  background: #E5C688;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-.login input{
-  width: 100%;
-  padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-.login button{
-  width: 100%;
-  padding: 10px;
-  background: #333;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-.login button:hover{
-  background: #555;
-}
-.login a {
-  display: block;
-  text-align: center;
-  margin-top: 10px;
-  color: #333;
+.info-icone a{
   text-decoration: none;
-}
-.login a:hover {
-  text-decoration: underline;
-}
-#login-section h1 {
-  color: white;
-  margin-bottom: 20px;
-}
-.senha a{
-  display: flex;
+  color: #121212;
+  padding-top: 3px;
   text-align: center;
-  margin-top: 10px;
-  color: #333;
-  text-decoration: none;
-  justify-content: flex-end;
 }
-.senha a:hover {
-  text-decoration: underline;
-}
-.senha a{
-  margin-top: -15px;
-}
-
-
-/*Parte do recuperar senha*/
-
 #recuperar-senha {
   width: 100%;
-  height: 100vh;
+  height: 65vh;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-color: #9c7c24;
   padding: 20px;
+  position: fixed;
 }
 #recuperar-senha img {
   width: 150px;
   margin-bottom: 20px;
+  background-color: rgba(255, 255, 255, 0.103);
+  border-radius: 10px;
 }
 #recuperar-senha h1 {
   color: white;
@@ -187,12 +79,12 @@ body{
 /* VERIFICA CÓDIGO */
 #verifica-codigo {
   width: 100%;
-  height: 100vh;
+  height: 65vh;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-color: #9c7c24;
+  background: url(/frontend/img/senha.png) center/cover no-repeat fixed;
   padding: 20px;
 }
 #form-verifica {
@@ -231,12 +123,12 @@ body{
 /* DIGITE NOVA SENHA */
 #digite {
   width: 100%;
-  height: 100vh;
+  height: 65vh;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-color: #9c7c24;
+  background: url(/frontend/img/senha.png) center/cover no-repeat fixed;
   padding: 20px;
 }
 #form-nova-senha {
@@ -255,7 +147,7 @@ body{
   border: 1px solid #ccc;
   border-radius: 5px;
 }
-#form-nova-senha button {
+#form-nova-senha button{
   width: 100%;
   padding: 10px;
   background: #333;
@@ -267,6 +159,10 @@ body{
 #form-nova-senha button:hover {
   background: #555;
 }
+#form-nova-senha a{
+  list-style: none;
+  color: black;
+}
 #mensagem-nova-senha {
   margin-top: 10px;
   text-align: center;
@@ -275,27 +171,4 @@ body{
 /* Oculta elementos com a classe .hidden */
 .hidden {
   display: none !important;
-}
-
-/* tela inicial do projeto*/
-.cabecalho {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-.cabecalho img {
-  width: 100px;
-  height: 100px;
-  margin: 20px;
-  justify-content: flex-start;
-}
-navegacao{
-  display: flex-end;
-  justify-content: space-around;
-  align-items: center;
-  background-color: #E5C688;
-  padding: 10px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
